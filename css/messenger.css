@@ -1,0 +1,111 @@
+body {
+	background-color: black;
+}
+
+.app
+{
+	display: flex;
+	height: 600px;
+	width: 800px;
+	border: 5px solid white;
+	margin: auto;
+}
+
+.app-sidebar {
+	color: white;
+	border: 1px solid white;
+	width: 150px;
+	height: 400px;
+	margin: 15px;
+	text-align: center;
+}
+
+.app-sidebar-channels {
+	min-height: 150px;
+}
+
+.app-sidebar-channels-list {
+	padding: 0;
+	list-style-type: none;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.app-sidebar-channels-list-item {
+	color: white;
+}
+
+.app-sidebar-users {
+	min-height: 150px;
+}
+
+.app-sidebar-users-list {
+	padding: 0;
+	list-style-type: none;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.app-sidebar-users-list-item {
+	color: white;
+}
+
+.app-conversation {
+	color: white;
+	border: 1px solid white;
+	width: 600px;
+	height: 570px;
+	max-height: 570px;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	margin-left: 20px;
+	margin-right: 15px;
+	position:relative;
+}
+
+.app-conversation-header {
+	margin-left:15px;
+}
+
+.app-conversation-messages-container {
+	border: 1px solid purple;
+	margin: 15px; 
+	/* do something about height */
+}
+
+.app-conversation-messages-list {
+	padding: 0;
+	list-style-type: none;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.app-conversation-messages-list-item {
+	color: white;
+	margin-left: 15px;
+	margin-right: 15px;
+}
+
+.app-conversation-input-container {
+	margin: 15px;
+	position:absolute;                  
+	bottom:0px;                          
+	right:0px;
+}
+
+.app-conversation-input {
+	width: 450px;
+}
+
+.app-message-sent {
+	text-align: right !important; 
+	color: purple !important;
+	margin-right: 15px;
+}
+
+.app-message-received {
+	text-align: left !important;
+	color: yellow !important;
+	margin-left: 15px;
+}
+
