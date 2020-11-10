@@ -24,6 +24,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 //  >>> https://github.com/socketio/socket.io/tree/master/examples/chat <<<
 let numUsers = 0;
 
+let clientList = [];
+
 io.on('connection', (socket) => {
 	let addedUser = false;
  
@@ -42,13 +44,16 @@ io.on('connection', (socket) => {
  
 	  // we store the username in the socket session for this client
 	  socket.username = username;
+	  clientList.push(username);
 	  ++numUsers;
 	  addedUser = true;
 	  socket.emit('login', {
-		 numUsers: numUsers
+		 numUsers: numUsers,
+		 clientList: clientList // .filter(e => e != username)
 	  });
+	  
 	  // echo globally (all clients) that a person has connected
-	  io.sockets.emit('user joined', { // broadcast was removed.
+	  socket.broadcast.emit('user joined', { //  was removed.
 		 username: socket.username,
 		 numUsers: numUsers
 	  });
@@ -72,11 +77,13 @@ io.on('connection', (socket) => {
 	socket.on('disconnect', () => {
 	  if (addedUser) {
 		 --numUsers;
+		 clientList.splice(clientList.indexOf(socket.username), 1);
  
 		 // echo globally that this client has left
 		 socket.broadcast.emit('user left', {
 			username: socket.username,
-			numUsers: numUsers
+			numUsers: numUsers,
+			clientList: clientList
 		 });
 	  }
 	});

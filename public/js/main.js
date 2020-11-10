@@ -38,6 +38,15 @@ $(document).ready(function() {
 		// Display the welcome message
 		var message = "Welcome to City Chat!";
 		$("#app-header").text(message);
+		$("#app-sidebar-users-list-heading").text(`Users: ${data.numUsers}`);
+
+		$('#app-sidebar-users-list').empty()
+		for(i = 0; i < data.clientList.length; i++)
+		{
+			$("#app-sidebar-users-list").append(
+				`<li class="app-users-list-item">${data.clientList[i]}</li>`)
+		}
+
 		console.log(message, {
 		  prepend: true
 		});
@@ -65,8 +74,15 @@ $(document).ready(function() {
 	 // Whenever the server emits 'user left', log it in the chat body
 	 socket.on('user left', (data) => {
 		console.log(data.username + ' left');
-		addParticipantsMessage(data);
-		removeChatTyping(data);
+
+		$("#app-sidebar-users-list-heading").text(`Users: ${data.numUsers}`);
+
+		$('#app-sidebar-users-list').empty()
+		for(i = 0; i < data.clientList.length; i++)
+		{
+			$("#app-sidebar-users-list").append(
+				`<li class="app-users-list-item">${data.clientList[i]}</li>`)
+		}
 	 });
 
 	socket.on('disconnect', () => {
@@ -84,8 +100,12 @@ $(document).ready(function() {
 		console.log('attempt to reconnect has failed');
 	 });
   
-
-
+	 socket.on('userList', userArray => {
+		// refresh  the display to show the userArray
+		//userArray.forEach(element => {
+		//	$("#app-sidebar-users-list").append(
+		//		`<li class="app-users-list-item">${element}</li>`)
+		});
 	
  });
  
