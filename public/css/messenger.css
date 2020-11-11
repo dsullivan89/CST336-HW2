@@ -90,6 +90,7 @@ body {
 	color: white;
 	margin-left: 15px;
 	margin-right: 15px;
+	display: block;
 }
 
 .app-conversation-input-container {
@@ -118,4 +119,13 @@ body {
 .app-footer-text {
 	color:white;
 	font-size: 8pt;
+}
+
+.avatar-margin {
+	margin-left: 15px;
+	margin-right: 15px;
+}
+
+.sent-message-wrapper {
+	text-align: right;
 }

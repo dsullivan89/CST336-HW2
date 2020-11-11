@@ -39,8 +39,33 @@ $(document).ready(function() {
 		else
 		{
 			socket.emit('new message', message);
-			$("#app-conversation-messages-list").append(
-				`<li class="app-message-sent">${message}</li>`);
+
+			var avatar = document.createElement("img");
+			avatar.setAttribute("src", "../img/avatar-male.jpg")
+			avatar.setAttribute("class", "avatar-margin");
+			avatar.setAttribute("alt", "avatar");
+			avatar.setAttribute("width", "25px");
+			avatar.setAttribute("height", "25px");
+
+			var span = document.createElement("span");
+			span.setAttribute("class", "app-message-sent");
+			span.append(message);
+
+			var div = document.createElement("div");
+			div.setAttribute("class", "sent-message-wrapper");
+			div.append(avatar);
+			div.append(span);
+
+			var item = document.createElement("li");
+			item.append(div);
+
+			//item.find('span')[0].nextSibling.textContent = message;
+			
+
+			$("#app-conversation-messages-list").append(item);
+
+			//$("#app-conversation-messages-list").append(
+			//	`<li class="app-message-sent">${message}</li>`);
 		}
 		
 	});
@@ -68,8 +93,29 @@ $(document).ready(function() {
 	 // Whenever the server emits 'new message', update the chat body
 	 socket.on('new message', (data) => {
 
-		$("#app-conversation-messages-list").append(
-			`<li class="app-message-received">${data.username}: ${data.message}</li>`);
+		var avatar = document.createElement("img");
+		avatar.setAttribute("src", "../img/avatar-male.jpg");
+		avatar.setAttribute("class", "avatar-margin");
+		avatar.setAttribute("alt", "avatar");
+		avatar.setAttribute("width", "25px");
+		avatar.setAttribute("height", "25px");
+
+		var span = document.createElement("span");
+		span.setAttribute("class", "app-message-received");
+		span.append(data.username + ": " + data.message);
+
+		var div = document.createElement("div");
+		div.append(avatar);
+		div.append(span);
+
+		var item = document.createElement("li");
+		item.append(div);
+
+		var item = document.createElement("li");
+		item.append(div);
+
+		$("#app-conversation-messages-list").append(item);
+		//	`<li class="app-message-received"><img src="img/avatar-male.jpg" alt="avatar">${data.username}: ${data.message}</li>`);
 	 });
   
 	 // Whenever the server emits 'user joined', log it in the chat body
